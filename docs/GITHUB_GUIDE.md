@@ -1,6 +1,6 @@
-# Kişilik Analizi Uygulaması için GitHub Rehberi
+# GitHub Kullanım Rehberi
 
-Bu rehber, Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi uygulamasını GitHub'a yükleme ve kendi domaininizde kullanma sürecini adım adım açıklar.
+Bu rehber, Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi uygulamasını GitHub'da yayınlamak ve yönetmek için adım adım talimatlar içermektedir.
 
 ## İçindekiler
 
@@ -8,143 +8,198 @@ Bu rehber, Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi uygulama
 2. [Repository Oluşturma](#repository-oluşturma)
 3. [Dosyaları Yükleme](#dosyaları-yükleme)
 4. [GitHub Pages ile Yayınlama](#github-pages-ile-yayınlama)
-5. [Özel Domain Entegrasyonu](#özel-domain-entegrasyonu)
-6. [Değişiklik Yapma ve Güncelleme](#değişiklik-yapma-ve-güncelleme)
+5. [Özel Domain Kullanma](#özel-domain-kullanma)
+6. [Repository Yönetimi](#repository-yönetimi)
+7. [İşbirliği ve Katkıda Bulunma](#i̇şbirliği-ve-katkıda-bulunma)
 
 ## GitHub Hesabı Oluşturma
 
 Eğer henüz bir GitHub hesabınız yoksa:
 
-1. [GitHub.com](https://github.com) adresine gidin.
-2. "Sign up" butonuna tıklayın.
-3. İstenilen bilgileri doldurun (e-posta, şifre, kullanıcı adı).
-4. E-posta adresinizi doğrulayın.
+1. [GitHub.com](https://github.com) adresine gidin
+2. "Sign up" (Kaydol) düğmesine tıklayın
+3. İstenilen bilgileri doldurun:
+   - Kullanıcı adı
+   - E-posta adresi
+   - Şifre
+4. E-posta adresinizi doğrulayın
+5. Hesap kurulumunu tamamlayın
 
 ## Repository Oluşturma
 
-1. GitHub hesabınıza giriş yapın.
-2. Sağ üst köşedeki "+" simgesine tıklayın ve "New repository" seçeneğini seçin.
-3. Repository adını girin (örn. "kisilik-analizi").
-4. Açıklama ekleyin: "Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi Uygulaması".
-5. Repository'nin "Public" (herkese açık) olmasını seçin.
-6. "Initialize this repository with a README" seçeneğini işaretlemeyin (zaten bir README dosyamız var).
-7. "Create repository" butonuna tıklayın.
+1. GitHub hesabınıza giriş yapın
+2. Sağ üst köşedeki "+" simgesine tıklayın ve "New repository" (Yeni repository) seçeneğini seçin
+3. Repository bilgilerini doldurun:
+   - **Repository name**: kisilik-analizi (veya tercih ettiğiniz bir isim)
+   - **Description**: Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi
+   - **Visibility**: Public (Herkese açık) veya Private (Özel)
+   - "Initialize this repository with a README" seçeneğini işaretleyin
+4. "Create repository" (Repository oluştur) düğmesine tıklayın
 
 ## Dosyaları Yükleme
 
-### Git Kullanarak (Önerilen)
+### Web Arayüzü ile Yükleme
 
-Eğer Git bilgisine sahipseniz:
+1. Repository sayfanızda "Add file" (Dosya ekle) düğmesine tıklayın ve "Upload files" (Dosyaları yükle) seçeneğini seçin
+2. Dosyaları sürükleyip bırakın veya "choose your files" (dosyalarınızı seçin) bağlantısına tıklayın
+3. Yükleme açıklaması ekleyin (örn. "İlk dosya yüklemesi")
+4. "Commit changes" (Değişiklikleri kaydet) düğmesine tıklayın
 
-1. Bilgisayarınıza Git yükleyin (https://git-scm.com/downloads).
-2. Komut satırını açın ve şu komutları çalıştırın:
+### Git Komut Satırı ile Yükleme
+
+1. Git'i bilgisayarınıza yükleyin (eğer yüklü değilse)
+2. Repository'yi klonlayın:
 
 ```bash
-# Kişilik analizi klasörüne gidin
-cd /path/to/kisilik_analizi_github
-
-# Git repository'sini başlatın
-git init
-
-# Tüm dosyaları ekleyin
-git add .
-
-# İlk commit'i oluşturun
-git commit -m "İlk yükleme: Kişilik Analizi Uygulaması"
-
-# GitHub repository'nizi uzak sunucu olarak ekleyin (URL'yi kendi repository'nizle değiştirin)
-git remote add origin https://github.com/kullaniciadi/kisilik-analizi.git
-
-# Dosyaları GitHub'a gönderin
-git push -u origin main
+git clone https://github.com/kullanici-adiniz/kisilik-analizi.git
+cd kisilik-analizi
 ```
 
-### Git Kullanmadan (Web Arayüzü ile)
+3. Dosyaları kopyalayın
+4. Değişiklikleri ekleyin, commit edin ve push edin:
 
-Eğer Git bilginiz yoksa:
+```bash
+git add .
+git commit -m "İlk dosya yüklemesi"
+git push origin main
+```
 
-1. GitHub'da oluşturduğunuz repository'ye gidin.
-2. "Add file" > "Upload files" seçeneğine tıklayın.
-3. Tüm dosya ve klasörleri sürükleyip bırakın veya "choose your files" butonuna tıklayarak seçin.
-4. "Commit changes" butonuna tıklayın.
+### GitHub Desktop ile Yükleme
 
-Not: GitHub web arayüzü ile klasör yapısını koruyarak yükleme yapmak zor olabilir. Çok sayıda dosya ve klasör olduğu için Git kullanmanız önerilir.
+1. [GitHub Desktop](https://desktop.github.com/) uygulamasını indirin ve yükleyin
+2. GitHub hesabınızla giriş yapın
+3. Repository'nizi klonlayın
+4. Dosyaları kopyalayın
+5. Değişiklikleri commit edin ve push edin
 
 ## GitHub Pages ile Yayınlama
 
-1. GitHub'da repository'nize gidin.
-2. "Settings" sekmesine tıklayın.
-3. Sol menüden "Pages" seçeneğini bulun.
-4. "Source" bölümünde, "Branch" kısmından "main" branch'ini seçin.
-5. "Save" butonuna tıklayın.
-6. Birkaç dakika bekleyin. Sayfanın üst kısmında sitenizin yayınlandığı URL görünecektir (genellikle https://kullaniciadi.github.io/kisilik-analizi/ formatında).
+GitHub Pages, repository'nizdeki statik web sitelerini doğrudan yayınlamanıza olanak tanır.
 
-## Özel Domain Entegrasyonu
+1. Repository sayfanızda "Settings" (Ayarlar) sekmesine tıklayın
+2. Sol menüden "Pages" seçeneğine tıklayın
+3. "Source" (Kaynak) bölümünde:
+   - Branch: main (veya master)
+   - Folder: / (root)
+4. "Save" (Kaydet) düğmesine tıklayın
 
-Kendi domaininizi kullanmak için:
-
-1. Bir domain satın alın veya mevcut domaininizi kullanın.
-2. GitHub repository'nizin "Settings" > "Pages" bölümüne gidin.
-3. "Custom domain" alanına domaininizi girin (örn. "kisilik-analizi.com").
-4. "Save" butonuna tıklayın.
-5. Domain sağlayıcınızın DNS ayarlarına gidin ve şu kayıtları ekleyin:
-
-   **A Kayıtları** (apex domain için):
-   ```
-   185.199.108.153
-   185.199.109.153
-   185.199.110.153
-   185.199.111.153
-   ```
-
-   **CNAME Kaydı** (www subdomain için):
-   ```
-   www CNAME kullaniciadi.github.io.
-   ```
-
-6. DNS değişikliklerinin yayılması için 24-48 saat bekleyin.
-7. GitHub'da "Enforce HTTPS" seçeneğini işaretleyin (DNS değişiklikleri yayıldıktan sonra).
-
-## Değişiklik Yapma ve Güncelleme
-
-### Git Kullanarak
-
-1. Yerel değişikliklerinizi yapın.
-2. Değişiklikleri commit edin ve GitHub'a gönderin:
-
-```bash
-git add .
-git commit -m "Değişiklik açıklaması"
-git push
+GitHub, sitenizi şu formatta yayınlayacaktır:
+```
+https://kullanici-adiniz.github.io/kisilik-analizi/
 ```
 
-### GitHub Web Arayüzü ile
+### GitHub Pages Yapılandırması
 
-1. GitHub'da repository'nize gidin.
-2. Düzenlemek istediğiniz dosyaya tıklayın.
-3. Sağ üst köşedeki kalem simgesine tıklayın.
-4. Değişikliklerinizi yapın.
-5. Sayfanın altındaki "Commit changes" butonuna tıklayın.
+GitHub Pages'in doğru çalışması için repository'nizde bir `index.html` dosyası bulunmalıdır. Bu dosya, sitenizin ana sayfası olarak kullanılacaktır.
 
-## Özelleştirme
+## Özel Domain Kullanma
 
-Uygulamayı kendi markanıza uygun hale getirmek için:
+GitHub Pages ile kendi domaininizi kullanabilirsiniz:
 
-1. `css/style.css` dosyasını düzenleyerek renkleri ve stilleri değiştirin.
-2. HTML dosyalarındaki başlık ve metinleri güncelleyin.
-3. Kendi logonuzu eklemek için `images` klasörüne logo yükleyin ve HTML dosyalarında referans verin.
+1. Repository sayfanızda "Settings" > "Pages" bölümüne gidin
+2. "Custom domain" (Özel domain) alanına domaininizi girin (örn. kisilik-analizi.com)
+3. "Save" (Kaydet) düğmesine tıklayın
+4. Domain sağlayıcınızın DNS ayarlarında aşağıdaki değişiklikleri yapın:
 
-## Sorun Giderme
+### Apex Domain için (örn. kisilik-analizi.com)
 
-- **404 Hatası**: GitHub Pages'in etkinleşmesi birkaç dakika sürebilir. Eğer 404 hatası alıyorsanız, biraz bekleyin ve sayfayı yenileyin.
-- **CSS/JS Yüklenmiyor**: Dosya yollarının doğru olduğundan emin olun. GitHub Pages'te repository adı URL'nin bir parçası olduğu için, mutlak yollar kullanmanız gerekebilir.
-- **HTTPS Sorunu**: Özel domain kullanıyorsanız, "Enforce HTTPS" seçeneğini işaretlediğinizden emin olun.
+Aşağıdaki A kayıtlarını ekleyin:
 
-## Yardım ve Destek
+```
+A    @    185.199.108.153
+A    @    185.199.109.153
+A    @    185.199.110.153
+A    @    185.199.111.153
+```
 
-Eğer GitHub veya özel domain entegrasyonu konusunda sorun yaşarsanız:
+### www Subdomain için (örn. www.kisilik-analizi.com)
 
-- GitHub Dokümantasyonu: https://docs.github.com/en/pages
-- Domain DNS Ayarları: Domain sağlayıcınızın destek sayfalarına başvurun.
+Bir CNAME kaydı ekleyin:
 
-Bu rehber, Kişilik Analizi uygulamanızı GitHub'da yayınlamanıza ve kendi domaininizde kullanmanıza yardımcı olacaktır. Herhangi bir sorunla karşılaşırsanız, GitHub'ın kapsamlı dokümantasyonuna başvurabilirsiniz.
+```
+CNAME    www    kullanici-adiniz.github.io
+```
+
+5. DNS değişikliklerinin yayılmasını bekleyin (24-48 saat sürebilir)
+6. "Enforce HTTPS" (HTTPS'yi zorunlu kıl) seçeneğini işaretleyin
+
+## Repository Yönetimi
+
+### Dosya Düzenleme
+
+1. Repository'nizde düzenlemek istediğiniz dosyaya tıklayın
+2. Sağ üst köşedeki kalem simgesine tıklayın
+3. Değişikliklerinizi yapın
+4. Sayfanın altında bir commit mesajı girin
+5. "Commit changes" (Değişiklikleri kaydet) düğmesine tıklayın
+
+### Sürüm Oluşturma (Release)
+
+1. Repository sayfanızda "Releases" bölümüne gidin
+2. "Create a new release" (Yeni sürüm oluştur) düğmesine tıklayın
+3. Sürüm bilgilerini doldurun:
+   - Tag version: v1.0.0
+   - Release title: İlk Sürüm
+   - Description: Sürüm notları ve değişiklikler
+4. "Publish release" (Sürümü yayınla) düğmesine tıklayın
+
+### İstatistikleri Görüntüleme
+
+Repository sayfanızda "Insights" sekmesi altında şunları görebilirsiniz:
+- Katkıda bulunanlar
+- Commit sıklığı
+- Kod frekansı
+- Bağımlılık grafiği
+- Ağ grafiği
+
+## İşbirliği ve Katkıda Bulunma
+
+### Issue (Sorun) Oluşturma
+
+1. Repository sayfanızda "Issues" sekmesine tıklayın
+2. "New issue" (Yeni sorun) düğmesine tıklayın
+3. Başlık ve açıklama girin
+4. Etiketler, kilometre taşları ve atananlar ekleyin
+5. "Submit new issue" (Yeni sorunu gönder) düğmesine tıklayın
+
+### Pull Request (Çekme İsteği) Oluşturma
+
+1. Repository'yi fork edin (sağ üst köşedeki "Fork" düğmesi)
+2. Kendi fork'unuzda değişiklikler yapın
+3. "Pull requests" sekmesine tıklayın
+4. "New pull request" (Yeni çekme isteği) düğmesine tıklayın
+5. Değişiklikleri gözden geçirin
+6. "Create pull request" (Çekme isteği oluştur) düğmesine tıklayın
+7. Başlık ve açıklama girin
+8. "Create pull request" düğmesine tekrar tıklayın
+
+### İşbirlikçi Ekleme
+
+1. Repository sayfanızda "Settings" > "Manage access" bölümüne gidin
+2. "Invite a collaborator" (İşbirlikçi davet et) düğmesine tıklayın
+3. Kullanıcı adı veya e-posta adresi girin
+4. "Add" (Ekle) düğmesine tıklayın
+
+## Önemli Dosyalar
+
+Repository'nizde aşağıdaki önemli dosyaları bulundurmanız önerilir:
+
+### README.md
+
+Bu dosya, repository'nizin ana sayfasında görüntülenir ve projenizin genel bir açıklamasını içerir.
+
+### LICENSE
+
+Projenizin lisans bilgilerini içerir. MIT, Apache, GPL gibi açık kaynak lisanslarından birini seçebilirsiniz.
+
+### CONTRIBUTING.md
+
+Başkalarının projenize nasıl katkıda bulunabileceğini açıklar.
+
+### CODE_OF_CONDUCT.md
+
+Projenizin davranış kurallarını belirtir.
+
+---
+
+Bu rehber, Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi uygulamasını GitHub'da yayınlamak ve yönetmek için temel adımları içermektedir. GitHub'un sunduğu diğer özellikler ve araçlar hakkında daha fazla bilgi için [GitHub Docs](https://docs.github.com) sayfasını ziyaret edebilirsiniz.

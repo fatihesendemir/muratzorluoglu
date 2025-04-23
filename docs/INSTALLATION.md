@@ -1,256 +1,295 @@
-# Kurulum ve Dağıtım Rehberi
+# Kişilik Analizi Uygulaması Kurulum Rehberi
 
-Bu rehber, Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi uygulamasını farklı platformlarda nasıl kuracağınızı ve dağıtacağınızı açıklar.
+Bu rehber, Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi uygulamasının kendi sunucunuza veya web barındırma hizmetinize kurulumu için adım adım talimatlar içermektedir.
 
 ## İçindekiler
 
-- [Yerel Kurulum](#yerel-kurulum)
-- [GitHub Pages ile Dağıtım](#github-pages-ile-dağıtım)
-- [Netlify ile Dağıtım](#netlify-ile-dağıtım)
-- [Vercel ile Dağıtım](#vercel-ile-dağıtım)
-- [Kendi Sunucunuzda Dağıtım](#kendi-sunucunuzda-dağıtım)
-- [Özel Domain Entegrasyonu](#özel-domain-entegrasyonu)
+1. [Gereksinimler](#gereksinimler)
+2. [Temel Kurulum](#temel-kurulum)
+3. [Özel Domain Entegrasyonu](#özel-domain-entegrasyonu)
+4. [Konfigürasyon Ayarları](#konfigürasyon-ayarları)
+5. [SSL Sertifikası Kurulumu](#ssl-sertifikası-kurulumu)
+6. [Sorun Giderme](#sorun-giderme)
 
-## Yerel Kurulum
+## Gereksinimler
 
-### Gereksinimler
+Kişilik Analizi uygulamasını çalıştırmak için aşağıdaki gereksinimlere ihtiyacınız vardır:
 
-- Git (isteğe bağlı)
-- Herhangi bir web sunucusu (örn. Python, Node.js, Apache, Nginx)
+- Web sunucusu (Apache, Nginx, IIS vb.)
+- HTML, CSS ve JavaScript desteği
+- Tarayıcı erişimi
 
-### Adımlar
+Uygulama tamamen istemci tarafında çalıştığı için PHP, Node.js veya veritabanı gibi sunucu tarafı teknolojilere ihtiyaç yoktur.
 
-1. Repository'yi klonlayın veya ZIP olarak indirin:
-   ```bash
-   git clone https://github.com/kullaniciadi/kisilik-analizi.git
-   cd kisilik-analizi
-   ```
+## Temel Kurulum
 
-2. Dosyaları bir web sunucusu ile sunun:
+### 1. Dosyaları İndirme
 
-   **Python ile:**
-   ```bash
-   python -m http.server 8000
-   ```
+GitHub repository'sinden dosyaları indirin:
 
-   **Node.js ile:**
-   ```bash
-   npx serve
-   ```
+```bash
+git clone https://github.com/kullanici-adi/kisilik-analizi.git
+cd kisilik-analizi
+```
 
-3. Tarayıcınızda `http://localhost:8000` (veya sunucunuzun belirttiği URL) adresine giderek uygulamayı görüntüleyin.
+Alternatif olarak, repository'yi ZIP olarak indirip açabilirsiniz.
 
-## GitHub Pages ile Dağıtım
+### 2. Dosyaları Sunucuya Yükleme
 
-GitHub Pages, GitHub repository'nizden doğrudan statik web siteleri yayınlamanıza olanak tanır.
+FTP, SFTP veya tercih ettiğiniz dosya transfer yöntemiyle tüm dosyaları web sunucunuza yükleyin. Dosyaları web sunucunuzun kök dizinine veya bir alt dizine yükleyebilirsiniz.
 
-### Adımlar
+**Örnek Dizin Yapısı:**
+```
+public_html/
+└── kisilik-analizi/
+    ├── css/
+    ├── js/
+    ├── images/
+    ├── docs/
+    ├── index.html
+    ├── admin.html
+    └── ...
+```
 
-1. GitHub'da yeni bir repository oluşturun.
+### 3. Konfigürasyon Ayarlarını Düzenleme
 
-2. Repository'nizi GitHub'a push edin:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/kullaniciadi/kisilik-analizi.git
-   git push -u origin main
-   ```
+`js/config.js` dosyasını açın ve uygulamanın ayarlarını kendi ihtiyaçlarınıza göre düzenleyin:
 
-3. GitHub repository'nizin ayarlar sayfasına gidin.
+```javascript
+const AppConfig = {
+    app: {
+        name: "Şirketinizin Adı - Kişilik Analizi",
+        // Diğer ayarlar...
+    },
+    // Diğer konfigürasyon bölümleri...
+};
+```
 
-4. Sol menüden "Pages" seçeneğini bulun.
+### 4. Erişimi Test Etme
 
-5. "Source" bölümünde, "Branch" kısmından "main" branch'ini ve "/(root)" klasörünü seçin.
+Web tarayıcınızı açın ve uygulamanın URL'sine gidin:
 
-6. "Save" butonuna tıklayın.
+```
+http://sizin-sunucunuz.com/kisilik-analizi/
+```
 
-7. GitHub Pages siteniz birkaç dakika içinde `https://kullaniciadi.github.io/kisilik-analizi/` adresinde yayınlanacaktır.
-
-## Netlify ile Dağıtım
-
-Netlify, sürekli dağıtım ve otomatik SSL sertifikaları gibi özellikler sunar.
-
-### Adımlar
-
-1. [Netlify](https://www.netlify.com/)'e kaydolun veya giriş yapın.
-
-2. "New site from Git" butonuna tıklayın.
-
-3. Git sağlayıcınızı seçin (GitHub, GitLab veya Bitbucket).
-
-4. Repository'nizi seçin.
-
-5. Dağıtım ayarlarını yapılandırın:
-   - Build command: (boş bırakın)
-   - Publish directory: (boş bırakın veya `.` girin)
-
-6. "Deploy site" butonuna tıklayın.
-
-7. Siteniz birkaç saniye içinde `https://random-name.netlify.app` adresinde yayınlanacaktır.
-
-## Vercel ile Dağıtım
-
-Vercel, özellikle frontend projeleri için optimize edilmiş bir dağıtım platformudur.
-
-### Adımlar
-
-1. [Vercel](https://vercel.com/)'e kaydolun veya giriş yapın.
-
-2. "New Project" butonuna tıklayın.
-
-3. Git sağlayıcınızı seçin ve repository'nizi içe aktarın.
-
-4. Dağıtım ayarlarını yapılandırın:
-   - Framework Preset: Other
-   - Build Command: (boş bırakın)
-   - Output Directory: (boş bırakın)
-
-5. "Deploy" butonuna tıklayın.
-
-6. Siteniz birkaç saniye içinde `https://kisilik-analizi.vercel.app` adresinde yayınlanacaktır.
-
-## Kendi Sunucunuzda Dağıtım
-
-### Apache Web Sunucusu
-
-1. Dosyaları Apache'nin belge kök dizinine kopyalayın (genellikle `/var/www/html/`):
-   ```bash
-   cp -r * /var/www/html/kisilik-analizi/
-   ```
-
-2. Apache'yi yeniden başlatın:
-   ```bash
-   sudo systemctl restart apache2
-   ```
-
-### Nginx Web Sunucusu
-
-1. Dosyaları Nginx'in belge kök dizinine kopyalayın (genellikle `/usr/share/nginx/html/`):
-   ```bash
-   cp -r * /usr/share/nginx/html/kisilik-analizi/
-   ```
-
-2. Nginx yapılandırma dosyasını oluşturun:
-   ```bash
-   sudo nano /etc/nginx/conf.d/kisilik-analizi.conf
-   ```
-
-3. Aşağıdaki içeriği ekleyin:
-   ```nginx
-   server {
-       listen 80;
-       server_name kisilik-analizi.example.com;
-       root /usr/share/nginx/html/kisilik-analizi;
-       index index.html;
-       
-       location / {
-           try_files $uri $uri/ /index.html;
-       }
-   }
-   ```
-
-4. Nginx'i yeniden başlatın:
-   ```bash
-   sudo systemctl restart nginx
-   ```
+Ana sayfa yükleniyorsa, kurulum başarılı demektir.
 
 ## Özel Domain Entegrasyonu
 
-### GitHub Pages ile Özel Domain
+### 1. Domain Satın Alma ve DNS Ayarları
 
-1. Domain sağlayıcınızın DNS ayarlarında, aşağıdaki A kayıtlarını ekleyin:
-   ```
-   185.199.108.153
-   185.199.109.153
-   185.199.110.153
-   185.199.111.153
-   ```
+Eğer henüz bir domaininiz yoksa, bir domain kayıt hizmetinden (GoDaddy, Namecheap, Google Domains vb.) bir domain satın alın.
 
-2. Alternatif olarak, bir CNAME kaydı ekleyebilirsiniz:
-   ```
-   CNAME: kullaniciadi.github.io
-   ```
+Domain DNS ayarlarını web barındırma hizmetinizin sunucularına yönlendirin:
 
-3. GitHub repository'nizin ayarlar sayfasında, "Pages" bölümüne gidin.
+**A Kaydı Örneği:**
+```
+Tür: A
+Ad: @
+Değer: 123.456.789.10 (sunucu IP adresi)
+TTL: 3600
+```
 
-4. "Custom domain" alanına domaininizi girin ve "Save" butonuna tıklayın.
+**CNAME Kaydı Örneği (Alt Domain için):**
+```
+Tür: CNAME
+Ad: kisilik
+Değer: sizin-sunucunuz.com
+TTL: 3600
+```
 
-5. "Enforce HTTPS" seçeneğini işaretleyin.
+### 2. Web Sunucusu Konfigürasyonu
 
-### Netlify ile Özel Domain
+#### Apache için (`.htaccess` dosyası):
 
-1. Netlify kontrol panelinizde, sitenizi seçin.
+```apache
+# Ana domain için
+<VirtualHost *:80>
+    ServerName kisilik-analizi.com
+    DocumentRoot /var/www/html/kisilik-analizi
+    
+    <Directory /var/www/html/kisilik-analizi>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+    
+    ErrorLog ${APACHE_LOG_DIR}/kisilik-analizi-error.log
+    CustomLog ${APACHE_LOG_DIR}/kisilik-analizi-access.log combined
+</VirtualHost>
+```
 
-2. "Domain settings" veya "Domain management" bölümüne gidin.
+#### Nginx için:
 
-3. "Add custom domain" butonuna tıklayın.
+```nginx
+server {
+    listen 80;
+    server_name kisilik-analizi.com www.kisilik-analizi.com;
+    
+    root /var/www/html/kisilik-analizi;
+    index index.html;
+    
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
 
-4. Domaininizi girin ve "Verify" butonuna tıklayın.
+### 3. Uygulama URL'lerini Güncelleme
 
-5. Domain sağlayıcınızın DNS ayarlarında, Netlify'ın sağladığı DNS kayıtlarını ekleyin veya nameserver'larınızı Netlify'ın nameserver'ları ile değiştirin.
+Eğer özel bir domain kullanıyorsanız, `js/config.js` dosyasında bunu belirtebilirsiniz:
 
-### Vercel ile Özel Domain
+```javascript
+const AppConfig = {
+    app: {
+        name: "Şirketinizin Adı - Kişilik Analizi",
+        baseUrl: "https://kisilik-analizi.com"
+    },
+    // Diğer ayarlar...
+};
+```
 
-1. Vercel kontrol panelinizde, projenizi seçin.
+## Konfigürasyon Ayarları
 
-2. "Settings" sekmesine gidin.
+`js/config.js` dosyasında düzenleyebileceğiniz önemli ayarlar:
 
-3. Sol menüden "Domains" seçeneğini tıklayın.
+### Uygulama Ayarları
 
-4. "Add" butonuna tıklayın ve domaininizi girin.
+```javascript
+app: {
+    name: "Şirketinizin Adı - Kişilik Analizi", // Uygulama adı
+    version: "1.2.0",                           // Versiyon numarası
+    defaultLanguage: "tr"                       // Varsayılan dil
+}
+```
 
-5. Domain sağlayıcınızın DNS ayarlarında, Vercel'in sağladığı DNS kayıtlarını ekleyin.
+### Admin Paneli Ayarları
 
-### Kendi Sunucunuzda Özel Domain
+```javascript
+admin: {
+    defaultUsername: "admin",                   // Varsayılan kullanıcı adı
+    defaultPassword: "admin123",                // Varsayılan şifre (değiştirin!)
+    sessionTimeout: 30,                         // Oturum zaman aşımı (dakika)
+    maxLoginAttempts: 5,                        // Maksimum giriş denemesi
+    lockoutTime: 15                             // Hesap kilitleme süresi (dakika)
+}
+```
 
-1. Domain sağlayıcınızın DNS ayarlarında, A kaydı ekleyin:
-   ```
-   A: sunucu_ip_adresi
-   ```
+### Rapor Ayarları
 
-2. Web sunucunuzun yapılandırmasını güncelleyin:
+```javascript
+reports: {
+    defaultFormat: "html",                      // Varsayılan rapor formatı
+    defaultDetailLevel: "detailed",             // Varsayılan detay seviyesi
+    companyLogo: "/images/logo.png",            // Şirket logosu URL
+    companyName: "Şirketinizin Adı",            // Şirket adı
+    contactInfo: "info@sirketiniz.com"          // İletişim bilgileri
+}
+```
 
-   **Apache:**
-   ```apache
-   <VirtualHost *:80>
-       ServerName domain.com
-       ServerAlias www.domain.com
-       DocumentRoot /var/www/html/kisilik-analizi
-       
-       <Directory /var/www/html/kisilik-analizi>
-           Options -Indexes +FollowSymLinks
-           AllowOverride All
-           Require all granted
-       </Directory>
-       
-       ErrorLog ${APACHE_LOG_DIR}/domain.com-error.log
-       CustomLog ${APACHE_LOG_DIR}/domain.com-access.log combined
-   </VirtualHost>
-   ```
+### Sistem Ayarları
 
-   **Nginx:**
-   ```nginx
-   server {
-       listen 80;
-       server_name domain.com www.domain.com;
-       root /usr/share/nginx/html/kisilik-analizi;
-       index index.html;
-       
-       location / {
-           try_files $uri $uri/ /index.html;
-       }
-   }
-   ```
+```javascript
+system: {
+    resultVisibility: "admin_only",             // Sonuç görünürlüğü
+    dataRetention: "unlimited",                 // Veri saklama süresi
+    enableAnalytics: false,                     // Analitik toplama
+    debugMode: false                            // Hata ayıklama modu
+}
+```
 
-3. SSL sertifikası eklemek için Let's Encrypt kullanabilirsiniz:
-   ```bash
-   sudo certbot --apache -d domain.com -d www.domain.com
-   ```
-   veya
-   ```bash
-   sudo certbot --nginx -d domain.com -d www.domain.com
-   ```
+### Özelleştirme Ayarları
 
-Bu rehber, uygulamanızı farklı platformlarda nasıl dağıtacağınızı ve özel domaininizle nasıl entegre edeceğinizi açıklamaktadır. Herhangi bir sorunla karşılaşırsanız, lütfen GitHub üzerinden bir issue açın.
+```javascript
+customization: {
+    primaryColor: "#3498db",                    // Ana renk
+    secondaryColor: "#2c3e50",                  // İkincil renk
+    fontFamily: "Arial, sans-serif",            // Yazı tipi
+    enableDarkMode: false,                      // Karanlık mod desteği
+    customCSS: ""                               // Özel CSS
+}
+```
+
+## SSL Sertifikası Kurulumu
+
+Güvenli bir bağlantı için SSL sertifikası kurmanız önerilir.
+
+### Let's Encrypt ile Ücretsiz SSL Sertifikası
+
+#### 1. Certbot Kurulumu
+
+```bash
+sudo apt-get update
+sudo apt-get install certbot
+```
+
+Apache için:
+```bash
+sudo apt-get install python3-certbot-apache
+```
+
+Nginx için:
+```bash
+sudo apt-get install python3-certbot-nginx
+```
+
+#### 2. Sertifika Alma
+
+Apache için:
+```bash
+sudo certbot --apache -d kisilik-analizi.com -d www.kisilik-analizi.com
+```
+
+Nginx için:
+```bash
+sudo certbot --nginx -d kisilik-analizi.com -d www.kisilik-analizi.com
+```
+
+#### 3. Otomatik Yenileme
+
+Sertifikaların otomatik yenilenmesini sağlamak için:
+
+```bash
+sudo certbot renew --dry-run
+```
+
+### Ticari SSL Sertifikası
+
+Ticari bir SSL sertifikası satın aldıysanız, sertifika sağlayıcınızın talimatlarını izleyerek kurulumu gerçekleştirin.
+
+## Sorun Giderme
+
+### Yaygın Sorunlar ve Çözümleri
+
+#### Uygulama Yüklenmiyor
+
+- Tüm dosyaların doğru şekilde yüklendiğinden emin olun
+- Tarayıcı konsolunda hata mesajlarını kontrol edin (F12 tuşuna basın)
+- Web sunucusu günlük dosyalarını kontrol edin
+
+#### Admin Paneline Erişilemiyor
+
+- Doğru kullanıcı adı ve şifreyi kullandığınızdan emin olun
+- Tarayıcı çerezlerini ve önbelleğini temizleyin
+- LocalStorage'ı temizleyin (Tarayıcı konsolunda `localStorage.clear()` komutunu çalıştırın)
+
+#### Değerlendirme Sonuçları Kaydedilmiyor
+
+- Tarayıcınızın LocalStorage'a erişim izni olduğundan emin olun
+- Tarayıcınızın gizli modda olmadığından emin olun
+- Farklı bir tarayıcı deneyin
+
+#### Özelleştirmeler Uygulanmıyor
+
+- `js/config.js` dosyasındaki sözdizimini kontrol edin
+- Tarayıcı önbelleğini temizleyin
+- Sayfayı yeniden yükleyin (Ctrl+F5 veya Cmd+Shift+R)
+
+### Destek Alma
+
+Sorunlarınız devam ediyorsa, GitHub repository'sinde bir issue açabilir veya doğrudan iletişime geçebilirsiniz.
+
+---
+
+Bu kurulum rehberi, Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi uygulamasının kendi sunucunuza kurulumu için temel adımları içermektedir. Özel ihtiyaçlarınıza göre ek yapılandırmalar gerekebilir.

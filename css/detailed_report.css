@@ -1,0 +1,546 @@
+/* Detaylı Rapor Stilleri */
+.detailed-report {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.report-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #3498db;
+}
+
+.report-header h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.report-meta {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.report-summary {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.overall-score-container {
+    display: flex;
+    align-items: center;
+}
+
+.score-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.score-circle.large {
+    width: 120px;
+    height: 120px;
+    font-size: 32px;
+}
+
+.score-level {
+    flex: 1;
+}
+
+.score-level h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.report-charts {
+    margin-bottom: 30px;
+}
+
+.charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.chart-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 10px);
+}
+
+.chart-item h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.chart-placeholder {
+    height: 300px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7f8c8d;
+}
+
+.report-categories, .report-strengths, .report-weaknesses, 
+.report-compatibility, .report-recommendations, .report-notes,
+.report-detailed-analysis, .report-questions {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.report-categories h2, .report-strengths h2, .report-weaknesses h2, 
+.report-compatibility h2, .report-recommendations h2, .report-notes h2,
+.report-detailed-analysis h2, .report-questions h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.category-item {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.category-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.category-header h3 {
+    color: #2c3e50;
+    margin: 0;
+}
+
+.category-score {
+    text-align: right;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 10px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #3498db;
+}
+
+.category-score span {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.category-details p {
+    margin-top: 0;
+}
+
+.strengths-content h3, .weaknesses-content h3 {
+    color: #2c3e50;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.strengths-content ul, .weaknesses-content ul {
+    margin-top: 0;
+    padding-left: 20px;
+}
+
+.strengths-content li, .weaknesses-content li {
+    margin-bottom: 5px;
+}
+
+.recommendations-content {
+    line-height: 1.8;
+}
+
+.questions-accordion {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #eee;
+}
+
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    background-color: #f9f9f9;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.accordion-toggle {
+    font-size: 20px;
+    color: #7f8c8d;
+}
+
+.accordion-content {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 1000px;
+    padding: 15px;
+}
+
+.accordion-item.active .accordion-toggle {
+    transform: rotate(45deg);
+}
+
+.questions-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.questions-table th, .questions-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.questions-table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.report-footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+/* Karşılaştırma Raporu Stilleri */
+.comparison-report {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.comparison-summary {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.compatibility-score-container {
+    display: flex;
+    align-items: center;
+}
+
+.compatibility-level {
+    flex: 1;
+}
+
+.compatibility-level h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.comparison-table th, .comparison-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.comparison-table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.comparison-table .overall-row {
+    font-weight: bold;
+    background-color: #f9f9f9;
+}
+
+.comparison-table .positive {
+    color: #27ae60;
+}
+
+.comparison-table .negative {
+    color: #e74c3c;
+}
+
+.comparison-table .neutral {
+    color: #7f8c8d;
+}
+
+.common-strengths, .complementary-strengths, 
+.common-weaknesses, .complementary-weaknesses,
+.partnership-recommendations {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.common-strengths h2, .complementary-strengths h2, 
+.common-weaknesses h2, .complementary-weaknesses h2,
+.partnership-recommendations h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.complementary-columns {
+    display: flex;
+    gap: 20px;
+}
+
+.complementary-column {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.complementary-column h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.complementary-column ul {
+    margin-top: 0;
+    padding-left: 20px;
+}
+
+.complementary-column li {
+    margin-bottom: 5px;
+}
+
+/* Özet Raporu Stilleri */
+.summary-report {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.summary-overview {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.overview-stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.stat-title {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 5px;
+}
+
+.stat-level, .stat-name {
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.category-averages, .top-strengths-weaknesses, 
+.monthly-trends, .evaluations-list {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category-averages h2, .top-strengths-weaknesses h2, 
+.monthly-trends h2, .evaluations-list h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.summary-table th, .summary-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.top-features-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.top-features-column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.top-features-column h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 992px) {
+    .charts-container {
+        flex-direction: column;
+    }
+    
+    .chart-item {
+        width: 100%;
+    }
+    
+    .complementary-columns {
+        flex-direction: column;
+    }
+    
+    .overview-stats {
+        flex-direction: column;
+    }
+    
+    .stat-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .overall-score-container, .compatibility-score-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .score-circle {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .category-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .category-score {
+        margin-top: 10px;
+        text-align: center;
+    }
+    
+    .progress-bar {
+        width: 100%;
+    }
+    
+    .top-features-container {
+        flex-direction: column;
+    }
+}

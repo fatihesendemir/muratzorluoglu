@@ -1,112 +1,158 @@
 # Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi
 
-Bu proje, potansiyel iş ortaklarının kişilik özelliklerini detaylı bir şekilde analiz etmeye ve aralarındaki uyumluluğu değerlendirmeye yardımcı olan profesyonel bir web uygulamasıdır. Kodlama bilgisi gerektirmeden kullanılabilecek şekilde tasarlanmıştır.
+Bu proje, kişilik analizi yaparak potansiyel iş ortaklarının uyumluluğunu değerlendiren kapsamlı bir web uygulamasıdır. Çalışkanlık, sadakat, güçlü yönler ve zayıf yönleri detaylı bir şekilde analiz ederek, iş ortağı seçiminde profesyonel ve net sonuçlar sunar.
 
 ## Özellikler
 
 - **Kapsamlı Kişilik Analizi**: Çalışkanlık, sadakat, güçlü yönler ve zayıf yönleri değerlendiren detaylı anket
-- **Görsel Sonuç Raporları**: Kişilik özelliklerini grafikler ve tablolarla görselleştirme
-- **İş Ortağı Uyumluluk Değerlendirmesi**: İki kişilik profilini karşılaştırarak uyumluluk analizi yapma
-- **Tamamlayıcı Özellik Tespiti**: Tamamlayıcı güçlü yönleri ve potansiyel çatışma alanlarını belirleme
-- **Profesyonel Tavsiyeler**: Kişilik profili ve uyumluluk sonuçlarına göre özelleştirilmiş tavsiyeler
-- **Mobil Uyumlu Tasarım**: Tüm cihazlarda sorunsuz çalışan responsive arayüz
-- **Yerel Veri Saklama**: Kullanıcı verilerini tarayıcının yerel depolama alanında saklama
-
-## Demo
-
-Uygulamanın canlı demosuna [buradan](https://pkplkijz.manus.space) erişebilirsiniz.
+- **Görsel Sonuç Analizi**: Sonuçları grafiklerle görselleştirme
+- **İş Ortağı Uyumluluk Değerlendirmesi**: İki kişinin profilini karşılaştırarak uyumluluk analizi
+- **Admin Paneli**: Sonuçları yönetmek ve detaylı raporlar oluşturmak için güvenli yönetim arayüzü
+- **Detaylı Raporlama**: Farklı formatlarda (HTML, PDF, CSV, JSON) kapsamlı raporlar
+- **Sonuç Gizleme**: Test sonuçlarını test yapan kişiden gizleme özelliği
+- **Mobil Uyumlu Tasarım**: Tüm cihazlarda sorunsuz çalışan responsive tasarım
 
 ## Kurulum
 
 ### Gereksinimler
 
-Bu uygulama tamamen istemci taraflıdır ve herhangi bir sunucu gerektirmez. Statik dosyaları barındırabilen herhangi bir web sunucusu ile çalıştırılabilir.
+- Web sunucusu (Apache, Nginx vb.)
+- Tarayıcı (Chrome, Firefox, Safari, Edge)
 
-### Yerel Kurulum
+### Basit Kurulum
 
-1. Bu repository'yi klonlayın:
-   ```
-   git clone https://github.com/kullaniciadi/kisilik-analizi.git
-   cd kisilik-analizi
-   ```
+1. Bu repository'yi klonlayın veya ZIP olarak indirin
+2. Dosyaları web sunucunuza yükleyin
+3. Tarayıcınızdan uygulamaya erişin
 
-2. Dosyaları bir web sunucusu ile sunun. Örneğin, Python'un yerleşik HTTP sunucusunu kullanabilirsiniz:
-   ```
-   python -m http.server 8000
-   ```
+```bash
+git clone https://github.com/kullanici-adi/kisilik-analizi.git
+cd kisilik-analizi
+```
 
-3. Tarayıcınızda `http://localhost:8000` adresine giderek uygulamayı görüntüleyin.
+### Admin Paneli Kurulumu
 
-### Canlı Ortama Dağıtım
+Admin paneli varsayılan olarak aşağıdaki bilgilerle erişilebilir:
 
-Uygulamayı canlı ortama dağıtmak için aşağıdaki platformlardan birini kullanabilirsiniz:
+- Kullanıcı adı: `admin`
+- Şifre: `admin123`
 
-- **GitHub Pages**: Repository'nizi GitHub'a yükleyin ve GitHub Pages özelliğini etkinleştirin.
-- **Netlify**: Repository'nizi Netlify'a bağlayın veya dosyaları doğrudan yükleyin.
-- **Vercel**: Repository'nizi Vercel'e bağlayın.
-- **Kendi Sunucunuz**: Dosyaları kendi web sunucunuza yükleyin.
+Güvenlik için ilk girişten sonra şifrenizi değiştirmeniz önerilir.
 
-## Özel Domain Entegrasyonu
+## Kullanım
+
+### Kişilik Analizi Yapma
+
+1. Ana sayfada "Değerlendirme Başlat" düğmesine tıklayın
+2. Değerlendirilen ve değerlendiren kişi bilgilerini girin
+3. Anket sorularını yanıtlayın
+4. "Değerlendirmeyi Tamamla" düğmesine tıklayın
+
+### Admin Paneline Erişim
+
+1. Ana sayfanın alt kısmında bulunan "Yönetici Paneli" bağlantısına tıklayın
+2. Kullanıcı adı ve şifrenizi girin
+3. "Giriş Yap" düğmesine tıklayın
+
+### Detaylı Raporlar Oluşturma
+
+1. Admin panelinde "Değerlendirmeler" sekmesine gidin
+2. İlgili değerlendirmeyi seçin
+3. "Rapor Oluştur" düğmesine tıklayın
+4. Rapor formatını ve detay seviyesini seçin
+5. "Rapor Oluştur" düğmesine tıklayın
+
+### Karşılaştırma Raporu Oluşturma
+
+1. Admin panelinde "Karşılaştırma" sekmesine gidin
+2. Karşılaştırmak istediğiniz iki değerlendirmeyi seçin
+3. "Karşılaştır" düğmesine tıklayın
+
+## Özelleştirme
+
+### Görünüm Özelleştirme
+
+CSS dosyalarını düzenleyerek uygulamanın görünümünü özelleştirebilirsiniz:
+
+- `css/style.css`: Ana uygulama stilleri
+- `css/admin.css`: Admin paneli stilleri
+- `css/detailed_report.css`: Detaylı rapor stilleri
+
+### Anket Sorularını Özelleştirme
+
+Anket sorularını değiştirmek veya eklemek için:
+
+1. `js/script.js` dosyasındaki `questions` nesnesini düzenleyin
+2. `index.html` dosyasındaki ilgili form alanlarını güncelleyin
+
+### Sistem Ayarları
+
+Admin panelindeki "Ayarlar" sekmesinden şu ayarları yapılandırabilirsiniz:
+
+- **Sonuç Görünürlüğü**: Değerlendirme sonuçlarının kimler tarafından görüntülenebileceği
+- **Veri Saklama**: Değerlendirme verilerinin ne kadar süre saklanacağı
+- **Admin Hesabı**: Kullanıcı adı ve şifre değiştirme
+
+## Kendi Domaininizde Kullanma
 
 Uygulamayı kendi domaininizde kullanmak için:
 
-1. Uygulamayı yukarıdaki yöntemlerden biriyle dağıtın.
-2. Domain sağlayıcınızın DNS ayarlarından, domaininizi uygulamanın dağıtıldığı adrese yönlendirin.
-3. SSL sertifikası ekleyerek HTTPS desteği sağlayın.
+1. Dosyaları web sunucunuza yükleyin
+2. Domain DNS ayarlarınızı yapılandırın
+3. SSL sertifikası ekleyerek HTTPS desteği sağlayın
+
+Detaylı talimatlar için `docs/DOMAIN_INTEGRATION.md` dosyasına bakın.
 
 ## Dosya Yapısı
 
 ```
 kisilik-analizi/
-├── css/                  # CSS stil dosyaları
-│   └── style.css         # Ana stil dosyası
+├── css/                  # Stil dosyaları
+│   ├── style.css         # Ana uygulama stilleri
+│   ├── admin.css         # Admin paneli stilleri
+│   ├── detailed_report.css # Detaylı rapor stilleri
+│   └── thank_you.css     # Teşekkür sayfası stilleri
 ├── js/                   # JavaScript dosyaları
-│   ├── script.js         # Ana JavaScript dosyası
-│   ├── personality_analyzer.js  # Kişilik analizi algoritması
-│   ├── partner_compatibility.js # İş ortağı uyumluluk modülü
-│   └── test.js           # Test senaryoları
+│   ├── script.js         # Ana uygulama kodları
+│   ├── admin.js          # Admin paneli kodları
+│   ├── detailed_report.js # Detaylı raporlama modülü
+│   ├── results_manager.js # Sonuç yönetimi modülü
+│   ├── partner_compatibility.js # Uyumluluk hesaplama modülü
+│   └── integration.js    # Entegrasyon kodları
 ├── docs/                 # Dokümantasyon dosyaları
-│   ├── gereksinim_analizi.md       # Gereksinim analizi
-│   ├── kisilik_degerlendirme_anketi.md  # Anket soruları
-│   ├── kullanim_kilavuzu.md        # Kullanım kılavuzu
-│   └── todo.md           # Yapılacaklar listesi
+│   ├── INSTALLATION.md   # Kurulum rehberi
+│   ├── GITHUB_GUIDE.md   # GitHub kullanım rehberi
+│   └── DOMAIN_INTEGRATION.md # Domain entegrasyon rehberi
 ├── images/               # Görsel dosyaları
 ├── index.html            # Ana sayfa
+├── admin.html            # Admin paneli
+├── results.html          # Sonuç sayfası
 ├── karsilastirma.html    # Karşılaştırma sayfası
-├── test.html             # Test sayfası
-└── README.md             # Bu dosya
+├── README.md             # Proje açıklaması
+├── LICENSE               # Lisans bilgisi
+└── CONTRIBUTING.md       # Katkıda bulunma rehberi
 ```
 
-## Özelleştirme
-
-Uygulamayı kendi ihtiyaçlarınıza göre özelleştirmek için:
-
-### Görünüm Değiştirme
-
-`css/style.css` dosyasını düzenleyerek renkleri, yazı tiplerini ve diğer görsel öğeleri değiştirebilirsiniz.
-
-### Anket Sorularını Değiştirme
-
-`js/personality_analyzer.js` dosyasındaki `questions` nesnesini düzenleyerek anket sorularını değiştirebilirsiniz.
-
-### Değerlendirme Metinlerini Değiştirme
-
-`js/personality_analyzer.js` dosyasındaki `evaluationTexts` ve `recommendations` nesnelerini düzenleyerek değerlendirme metinlerini ve tavsiyeleri değiştirebilirsiniz.
-
 ## Katkıda Bulunma
+
+Projeye katkıda bulunmak istiyorsanız:
 
 1. Bu repository'yi fork edin
 2. Yeni bir branch oluşturun (`git checkout -b feature/amazing-feature`)
 3. Değişikliklerinizi commit edin (`git commit -m 'Add some amazing feature'`)
 4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
-5. Pull request oluşturun
+5. Pull Request oluşturun
+
+Detaylı bilgi için `CONTRIBUTING.md` dosyasına bakın.
 
 ## Lisans
 
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakın.
+Bu proje MIT Lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakın.
 
 ## İletişim
 
-Proje Sahibi - [E-posta Adresiniz](mailto:email@example.com)
+Sorularınız veya geri bildirimleriniz için GitHub üzerinden issue açabilirsiniz.
 
-Proje Linki: [https://github.com/kullaniciadi/kisilik-analizi](https://github.com/kullaniciadi/kisilik-analizi)
+---
+
+Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi © 2025

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Sonuçları - Kişilik Analizi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/detailed_report.css">
+    <script src="js/results_manager.js"></script>
+    <script src="js/detailed_report.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // URL'den değerlendirme ID'sini al
+            const urlParams = new URLSearchParams(window.location.search);
+            const evaluationId = urlParams.get('id');
+            
+            if (!evaluationId) {
+                showError('Değerlendirme ID\'si bulunamadı.');
+                return;
+            }
+            
+            // Sonuç yöneticisini başlat
+            const resultsManager = new ResultsManager();
+            const resultRedirector = new ResultRedirector(resultsManager);
+            
+            // Değerlendirme sonucunu getir
+            const evaluation = resultsManager.getEvaluationResult(evaluationId);
+            
+            if (!evaluation) {
+                showError('Değerlendirme bulunamadı.');
+                return;
+            }
+            
+            // Sonuç görünürlüğünü kontrol et
+            const result = resultRedirector.requestResultsView(evaluationId, evaluation.evaluatorName);
+            
+            if (result.showResults) {
+                // Rapor oluşturucuyu başlat
+                const reportGenerator = new DetailedReportGenerator();
+                
+                // HTML raporu oluştur
+                const reportHtml = reportGenerator.generateReport(evaluation, 'html', 'detailed');
+                
+                // Raporu göster
+                document.getElementById('report-container').innerHTML = reportHtml;
+                
+                // Grafikleri oluştur
+                createCharts(evaluation);
+            } else {
+                // Hata mesajı göster
+                showError(result.error || 'Bu değerlendirme sonuçlarını görüntüleme yetkiniz bulunmamaktadır.');
+            }
+        });
+        
+        // Hata mesajı göster
+        function showError(message) {
+            const container = document.getElementById('report-container');
+            container.innerHTML = `
+                <div class="error-message">
+                    <h2>Hata</h2>
+                    <p>${message}</p>
+                    <button class="btn" onclick="window.location.href='index.html'">Ana Sayfaya Dön</button>
+                </div>
+            `;
+        }
+        
+        // Grafikleri oluştur
+        function createCharts(evaluation) {
+            // Bu fonksiyon, gerçek uygulamada Chart.js gibi bir kütüphane kullanarak
+            // değerlendirme verilerine dayalı grafikler oluşturur
+            console.log('Grafikler oluşturuluyor:', evaluation);
+        }
+    </script>
+    <style>
+        .error-message {
+            text-align: center;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .error-message h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        .error-message p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .error-message .btn {
+            padding: 12px 24px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .error-message .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Kişilik Analizi Sonuçları</h1>
+            <p>Detaylı değerlendirme raporu</p>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div id="report-container">
+                <div class="loading">
+                    <p>Rapor yükleniyor...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year">2025</span> Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi</p>
+            <p><a href="admin.html">Yönetici Paneli</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Yıl güncellemesi
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

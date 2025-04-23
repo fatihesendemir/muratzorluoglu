@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli - Kişilik Analizi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-login-container" id="login-container">
+        <div class="admin-login-box">
+            <h1>Admin Paneli</h1>
+            <p>Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi</p>
+            
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i> Kullanıcı Adı</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Şifre</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn admin-login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                    </button>
+                </div>
+                
+                <div class="login-error" id="login-error"></div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="admin-panel-container" id="admin-panel-container" style="display: none;">
+        <header class="admin-header">
+            <div class="admin-logo">
+                <h1>Admin Paneli</h1>
+            </div>
+            <div class="admin-user-info">
+                <span id="admin-username">Admin</span>
+                <button id="admin-logout-btn" class="btn btn-small">
+                    <i class="fas fa-sign-out-alt"></i> Çıkış
+                </button>
+            </div>
+        </header>
+        
+        <div class="admin-content">
+            <div class="admin-sidebar">
+                <nav>
+                    <ul>
+                        <li class="active" data-tab="dashboard">
+                            <i class="fas fa-tachometer-alt"></i> Gösterge Paneli
+                        </li>
+                        <li data-tab="evaluations">
+                            <i class="fas fa-clipboard-list"></i> Değerlendirmeler
+                        </li>
+                        <li data-tab="reports">
+                            <i class="fas fa-chart-bar"></i> Raporlar
+                        </li>
+                        <li data-tab="settings">
+                            <i class="fas fa-cog"></i> Ayarlar
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="admin-main">
+                <!-- Gösterge Paneli -->
+                <div class="admin-tab active" id="dashboard-tab">
+                    <h2>Gösterge Paneli</h2>
+                    
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Toplam Değerlendirme</h3>
+                                <p id="total-evaluations">0</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Bu Ay</h3>
+                                <p id="monthly-evaluations">0</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Ortalama Puan</h3>
+                                <p id="average-score">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-charts">
+                        <div class="chart-container">
+                            <h3>Kategori Dağılımı</h3>
+                            <canvas id="category-distribution-chart"></canvas>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <h3>Aylık Değerlendirmeler</h3>
+                            <canvas id="monthly-evaluations-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-evaluations">
+                        <h3>Son Değerlendirmeler</h3>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Değerlendirilen</th>
+                                    <th>Değerlendiren</th>
+                                    <th>Tarih</th>
+                                    <th>Genel Puan</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-evaluations-table">
+                                <!-- JavaScript ile doldurulacak -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Değerlendirmeler -->
+                <div class="admin-tab" id="evaluations-tab">
+                    <h2>Tüm Değerlendirmeler</h2>
+                    
+                    <div class="filter-controls">
+                        <div class="search-box">
+                            <input type="text" id="evaluation-search" placeholder="Ara...">
+                            <button class="btn btn-small">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="filter-options">
+                            <select id="filter-date">
+                                <option value="all">Tüm Tarihler</option>
+                                <option value="today">Bugün</option>
+                                <option value="week">Bu Hafta</option>
+                                <option value="month">Bu Ay</option>
+                                <option value="year">Bu Yıl</option>
+                            </select>
+                            
+                            <select id="filter-score">
+                                <option value="all">Tüm Puanlar</option>
+                                <option value="high">Yüksek (70-100)</option>
+                                <option value="medium">Orta (40-70)</option>
+                                <option value="low">Düşük (0-40)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="evaluations-list">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Değerlendirilen</th>
+                                    <th>Değerlendiren</th>
+                                    <th>Tarih</th>
+                                    <th>Çalışkanlık</th>
+                                    <th>Sadakat</th>
+                                    <th>Güçlü Yönler</th>
+                                    <th>Zayıf Yönler</th>
+                                    <th>Uyumluluk</th>
+                                    <th>Genel Puan</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="evaluations-table">
+                                <!-- JavaScript ile doldurulacak -->
+                            </tbody>
+                        </table>
+                        
+                        <div class="pagination">
+                            <button class="btn btn-small" id="prev-page">
+                                <i class="fas fa-chevron-left"></i> Önceki
+                            </button>
+                            <span id="page-info">Sayfa 1 / 1</span>
+                            <button class="btn btn-small" id="next-page">
+                                Sonraki <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Raporlar -->
+                <div class="admin-tab" id="reports-tab">
+                    <h2>Detaylı Raporlar</h2>
+                    
+                    <div class="report-generator">
+                        <h3>Rapor Oluştur</h3>
+                        
+                        <div class="report-options">
+                            <div class="form-group">
+                                <label for="report-type">Rapor Türü</label>
+                                <select id="report-type">
+                                    <option value="individual">Bireysel Değerlendirme</option>
+                                    <option value="comparison">Karşılaştırma</option>
+                                    <option value="summary">Özet Rapor</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" id="individual-selection">
+                                <label for="individual-report-select">Değerlendirme Seçin</label>
+                                <select id="individual-report-select">
+                                    <!-- JavaScript ile doldurulacak -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" id="comparison-selection" style="display: none;">
+                                <label for="comparison-report-select1">İlk Değerlendirme</label>
+                                <select id="comparison-report-select1">
+                                    <!-- JavaScript ile doldurulacak -->
+                                </select>
+                                
+                                <label for="comparison-report-select2">İkinci Değerlendirme</label>
+                                <select id="comparison-report-select2">
+                                    <!-- JavaScript ile doldurulacak -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" id="summary-selection" style="display: none;">
+                                <label for="summary-date-start">Başlangıç Tarihi</label>
+                                <input type="date" id="summary-date-start">
+                                
+                                <label for="summary-date-end">Bitiş Tarihi</label>
+                                <input type="date" id="summary-date-end">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="report-format">Rapor Formatı</label>
+                                <select id="report-format">
+                                    <option value="pdf">PDF</option>
+                                    <option value="excel">Excel</option>
+                                    <option value="html">HTML</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="report-detail-level">Detay Seviyesi</label>
+                                <select id="report-detail-level">
+                                    <option value="basic">Temel</option>
+                                    <option value="standard">Standart</option>
+                                    <option value="detailed">Detaylı</option>
+                                    <option value="comprehensive">Kapsamlı</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button id="generate-report-btn" class="btn">
+                                    <i class="fas fa-file-alt"></i> Rapor Oluştur
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="saved-reports">
+                        <h3>Kaydedilmiş Raporlar</h3>
+                        
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Rapor Adı</th>
+                                    <th>Tür</th>
+                                    <th>Oluşturma Tarihi</th>
+                                    <th>Format</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="saved-reports-table">
+                                <!-- JavaScript ile doldurulacak -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Ayarlar -->
+                <div class="admin-tab" id="settings-tab">
+                    <h2>Ayarlar</h2>
+                    
+                    <div class="settings-section">
+                        <h3>Admin Hesabı</h3>
+                        
+                        <form id="admin-account-form">
+                            <div class="form-group">
+                                <label for="admin-username-change">Kullanıcı Adı</label>
+                                <input type="text" id="admin-username-change">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="admin-current-password">Mevcut Şifre</label>
+                                <input type="password" id="admin-current-password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="admin-new-password">Yeni Şifre</label>
+                                <input type="password" id="admin-new-password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="admin-confirm-password">Şifre Tekrar</label>
+                                <input type="password" id="admin-confirm-password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn">
+                                    <i class="fas fa-save"></i> Değişiklikleri Kaydet
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>Sistem Ayarları</h3>
+                        
+                        <form id="system-settings-form">
+                            <div class="form-group">
+                                <label for="result-visibility">Sonuç Görünürlüğü</label>
+                                <select id="result-visibility">
+                                    <option value="admin_only">Sadece Admin</option>
+                                    <option value="evaluator">Değerlendiren Kişi</option>
+                                    <option value="both">Her İkisi</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="data-retention">Veri Saklama Süresi</label>
+                                <select id="data-retention">
+                                    <option value="30">30 Gün</option>
+                                    <option value="90">90 Gün</option>
+                                    <option value="180">180 Gün</option>
+                                    <option value="365">1 Yıl</option>
+                                    <option value="unlimited">Sınırsız</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="report-logo">Rapor Logosu</label>
+                                <input type="file" id="report-logo" accept="image/*">
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn">
+                                    <i class="fas fa-save"></i> Ayarları Kaydet
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>Veri Yönetimi</h3>
+                        
+                        <div class="data-management-options">
+                            <button id="export-all-data" class="btn">
+                                <i class="fas fa-download"></i> Tüm Verileri Dışa Aktar
+                            </button>
+                            
+                            <button id="import-data" class="btn">
+                                <i class="fas fa-upload"></i> Veri İçe Aktar
+                            </button>
+                            
+                            <button id="clear-all-data" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i> Tüm Verileri Temizle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Değerlendirme Detay Modalı -->
+    <div class="modal" id="evaluation-detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Değerlendirme Detayı</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body" id="evaluation-detail-content">
+                <!-- JavaScript ile doldurulacak -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="print-evaluation-btn">
+                    <i class="fas fa-print"></i> Yazdır
+                </button>
+                <button class="btn" id="export-evaluation-btn">
+                    <i class="fas fa-file-export"></i> Dışa Aktar
+                </button>
+                <button class="btn" id="close-modal-btn">
+                    <i class="fas fa-times"></i> Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/admin.js"></script>
+</body>
+</html>

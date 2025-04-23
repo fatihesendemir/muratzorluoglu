@@ -1,0 +1,505 @@
+/* Admin Panel Styles */
+.admin-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+}
+
+.admin-login-box {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 400px;
+    text-align: center;
+}
+
+.admin-login-box h1 {
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.admin-login-box p {
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+.admin-login-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+}
+
+.login-error {
+    color: #e74c3c;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Admin Panel Layout */
+.admin-panel-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.admin-header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-logo h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.admin-user-info {
+    display: flex;
+    align-items: center;
+}
+
+.admin-user-info span {
+    margin-right: 15px;
+}
+
+.admin-content {
+    display: flex;
+    flex: 1;
+}
+
+.admin-sidebar {
+    width: 250px;
+    background-color: #34495e;
+    color: white;
+    padding: 20px 0;
+}
+
+.admin-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-sidebar li {
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.admin-sidebar li i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.admin-sidebar li:hover {
+    background-color: #2c3e50;
+}
+
+.admin-sidebar li.active {
+    background-color: #3498db;
+}
+
+.admin-main {
+    flex: 1;
+    padding: 30px;
+    background-color: #f5f7fa;
+    overflow-y: auto;
+}
+
+/* Admin Tabs */
+.admin-tab {
+    display: none;
+}
+
+.admin-tab.active {
+    display: block;
+}
+
+.admin-tab h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* Dashboard Stats */
+.dashboard-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    width: 30%;
+}
+
+.stat-icon {
+    background-color: #3498db;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.stat-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #7f8c8d;
+}
+
+.stat-info p {
+    margin: 5px 0 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Dashboard Charts */
+.dashboard-charts {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.chart-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    width: 48%;
+}
+
+.chart-container h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Tables */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.admin-table th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+}
+
+.admin-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.admin-table tr:hover {
+    background-color: #f1f2f6;
+}
+
+.admin-table .action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.admin-table .action-buttons button {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 10px;
+}
+
+.pagination span {
+    color: #7f8c8d;
+}
+
+/* Filter Controls */
+.filter-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    width: 250px;
+}
+
+.search-box button {
+    border-radius: 0 4px 4px 0;
+    padding: 10px 15px;
+}
+
+.filter-options {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-options select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Report Generator */
+.report-generator {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.report-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Settings Section */
+.settings-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.settings-section h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.data-management-options {
+    display: flex;
+    gap: 15px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 900px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.close-modal {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #2c3e50;
+}
+
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Buttons */
+.btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.btn i {
+    margin-right: 8px;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.btn-small {
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group input[type="file"] {
+    padding: 8px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .dashboard-stats, .dashboard-charts {
+        flex-direction: column;
+    }
+    
+    .stat-card, .chart-container {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .report-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-content {
+        flex-direction: column;
+    }
+    
+    .admin-sidebar {
+        width: 100%;
+        padding: 10px 0;
+    }
+    
+    .admin-sidebar li {
+        padding: 10px 15px;
+    }
+    
+    .admin-main {
+        padding: 15px;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    .search-box input {
+        width: 100%;
+    }
+    
+    .filter-options {
+        width: 100%;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
