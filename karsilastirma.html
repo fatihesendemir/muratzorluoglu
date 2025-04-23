@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İş Ortağı Karşılaştırma</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>İş Ortağı Uyumluluk Karşılaştırması</h1>
+            <p class="subtitle">İki kişilik profilini karşılaştırarak iş ortaklığı uyumluluğunu analiz edin</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="karsilastirma.html" class="active">Karşılaştırma</a></li>
+                    <li><a href="test.html">Test</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="form-container">
+            <div class="comparison-form">
+                <h2>Karşılaştırılacak Profilleri Seçin</h2>
+                
+                <div class="profile-selection">
+                    <div class="profile-select-container">
+                        <h3>Birinci Profil</h3>
+                        <select id="profile1-select" class="profile-dropdown">
+                            <option value="">Profil seçin...</option>
+                            <!-- Profiller JavaScript ile eklenecek -->
+                        </select>
+                        <div class="profile-preview" id="profile1-preview"></div>
+                    </div>
+                    
+                    <div class="comparison-divider">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    
+                    <div class="profile-select-container">
+                        <h3>İkinci Profil</h3>
+                        <select id="profile2-select" class="profile-dropdown">
+                            <option value="">Profil seçin...</option>
+                            <!-- Profiller JavaScript ile eklenecek -->
+                        </select>
+                        <div class="profile-preview" id="profile2-preview"></div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button id="compare-btn" class="btn" disabled>
+                        <i class="fas fa-chart-line"></i> Uyumluluğu Analiz Et
+                    </button>
+                    <button id="new-profile-btn" class="btn">
+                        <i class="fas fa-user-plus"></i> Yeni Profil Oluştur
+                    </button>
+                </div>
+            </div>
+            
+            <div class="comparison-results" id="comparison-results" style="display: none;">
+                <h2>Uyumluluk Analizi Sonuçları</h2>
+                
+                <div class="compatibility-score-container">
+                    <div class="compatibility-score">
+                        <div class="score-circle" id="compatibility-score-circle">
+                            <span id="compatibility-score-value">0%</span>
+                        </div>
+                        <h3>Uyumluluk Puanı</h3>
+                    </div>
+                    
+                    <div class="compatibility-level">
+                        <h3>Uyumluluk Seviyesi:</h3>
+                        <p id="compatibility-level-text">-</p>
+                    </div>
+                </div>
+                
+                <div class="comparison-charts">
+                    <div class="chart-box">
+                        <h3>Kategori Karşılaştırması</h3>
+                        <canvas id="comparison-radar-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="complementary-traits">
+                    <div class="traits-section">
+                        <h3>Tamamlayıcı Güçlü Yönler</h3>
+                        <p>Bu güçlü yönler birbirini tamamlayıcı niteliktedir ve iş ortaklığında avantaj sağlayabilir:</p>
+                        <ul id="complementary-strengths-list">
+                            <!-- Tamamlayıcı güçlü yönler JavaScript ile eklenecek -->
+                        </ul>
+                    </div>
+                    
+                    <div class="traits-section">
+                        <h3>Potansiyel Çatışma Alanları</h3>
+                        <p>Bu alanlar potansiyel çatışma noktaları olabilir ve dikkat edilmesi gerekir:</p>
+                        <ul id="potential-conflicts-list">
+                            <!-- Potansiyel çatışma alanları JavaScript ile eklenecek -->
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="compatibility-recommendations">
+                    <h3>Tavsiyeler</h3>
+                    <p id="compatibility-recommendations-text">-</p>
+                </div>
+                
+                <div class="button-group">
+                    <button id="back-to-comparison-btn" class="btn">
+                        <i class="fas fa-arrow-left"></i> Geri Dön
+                    </button>
+                    <button id="print-comparison-btn" class="btn">
+                        <i class="fas fa-print"></i> Yazdır
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; <span id="current-year">2025</span> Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi</p>
+            <p><a href="https://github.com/kullaniciadi/kisilik-analizi" target="_blank">GitHub</a> | <a href="docs/kullanim_kilavuzu.md" target="_blank">Kullanım Kılavuzu</a></p>
+        </footer>
+    </div>
+
+    <script src="js/personality_analyzer.js"></script>
+    <script src="js/partner_compatibility.js"></script>
+    <script>
+        // Otomatik yıl güncellemesi
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

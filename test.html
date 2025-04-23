@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişilik Analizi Uygulaması Test Sayfası</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-header h1 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        .test-console {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            height: 500px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .test-summary {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .test-summary h2 {
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .test-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            min-width: 150px;
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .success-rate {
+            color: #2ecc71;
+        }
+        
+        .passed {
+            color: #2ecc71;
+        }
+        
+        .failed {
+            color: #e74c3c;
+        }
+        
+        .total {
+            color: #3498db;
+        }
+        
+        .test-details {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-details h2 {
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .test-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .test-item.success {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .test-item.failure {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .test-item-icon {
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        
+        .test-item-content {
+            flex: 1;
+        }
+        
+        .test-item-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .test-item-message {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn i {
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Kişilik Analizi Uygulaması Test Sayfası</h1>
+            <p class="subtitle">Uygulamanın tüm fonksiyonlarını test etmek için bu sayfayı kullanabilirsiniz</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="karsilastirma.html">Karşılaştırma</a></li>
+                    <li><a href="test.html" class="active">Test</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="test-container">
+            <div class="test-console" id="test-console">
+                <div>Testler başlatılıyor...</div>
+            </div>
+            
+            <div class="test-summary">
+                <h2>Test Özeti</h2>
+                <div class="test-stats">
+                    <div class="stat-item">
+                        <div class="stat-value total" id="total-tests">0</div>
+                        <div class="stat-label">Toplam Test</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value passed" id="passed-tests">0</div>
+                        <div class="stat-label">Başarılı</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value failed" id="failed-tests">0</div>
+                        <div class="stat-label">Başarısız</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value success-rate" id="success-rate">0%</div>
+                        <div class="stat-label">Başarı Oranı</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-details">
+                <h2>Test Detayları</h2>
+                <div id="test-details-container">
+                    <!-- Test detayları JavaScript ile eklenecek -->
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn" id="run-tests-btn">
+                    <i class="fas fa-play"></i> Testleri Çalıştır
+                </button>
+                <button class="btn" id="view-app-btn">
+                    <i class="fas fa-arrow-right"></i> Uygulamayı Görüntüle
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; <span id="current-year">2025</span> Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi</p>
+            <p><a href="https://github.com/kullaniciadi/kisilik-analizi" target="_blank">GitHub</a> | <a href="docs/kullanim_kilavuzu.md" target="_blank">Kullanım Kılavuzu</a></p>
+        </footer>
+    </div>
+    
+    <script src="js/personality_analyzer.js"></script>
+    <script src="js/test.js"></script>
+    <script>
+        // Otomatik yıl güncellemesi
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Konsola yazılan logları yakalayıp test konsoluna yönlendir
+        (function() {
+            const testConsole = document.getElementById('test-console');
+            const oldConsoleLog = console.log;
+            
+            console.log = function(message) {
+                oldConsoleLog.apply(console, arguments);
+                
+                const logLine = document.createElement('div');
+                
+                if (typeof message === 'string') {
+                    // Başlıkları ve sonuçları formatla
+                    if (message.startsWith('===')) {
+                        logLine.style.fontWeight = 'bold';
+                        logLine.style.marginTop = '10px';
+                        logLine.style.marginBottom = '5px';
+                        logLine.style.color = '#f39c12';
+                    } else if (message.startsWith('---')) {
+                        logLine.style.fontWeight = 'bold';
+                        logLine.style.marginTop = '10px';
+                        logLine.style.color = '#3498db';
+                    } else if (message.startsWith('✅')) {
+                        logLine.style.color = '#2ecc71';
+                    } else if (message.startsWith('❌')) {
+                        logLine.style.color = '#e74c3c';
+                    }
+                }
+                
+                logLine.textContent = message;
+                testConsole.appendChild(logLine);
+                testConsole.scrollTop = testConsole.scrollHeight;
+            };
+        })();
+        
+        // Test sonuçlarını görüntüle
+        function displayTestResults() {
+            // LocalStorage'dan test sonuçlarını al
+            const testReportJson = localStorage.getItem('testReport');
+            if (!testReportJson) return;
+            
+            const testReport = JSON.parse(testReportJson);
+            
+            // Test istatistiklerini güncelle
+            document.getElementById('total-tests').textContent = testReport.summary.total;
+            document.getElementById('passed-tests').textContent = testReport.summary.passed;
+            document.getElementById('failed-tests').textContent = testReport.summary.failed;
+            document.getElementById('success-rate').textContent = testReport.summary.successRate + '%';
+            
+            // Test detaylarını göster
+            const detailsContainer = document.getElementById('test-details-container');
+            detailsContainer.innerHTML = '';
+            
+            testReport.details.forEach(test => {
+                const testItem = document.createElement('div');
+                testItem.className = `test-item ${test.status === 'BAŞARILI' ? 'success' : 'failure'}`;
+                
+                testItem.innerHTML = `
+                    <div class="test-item-icon">
+                        <i class="fas ${test.status === 'BAŞARILI' ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                    </div>
+                    <div class="test-item-content">
+                        <div class="test-item-name">${test.name}</div>
+                        <div class="test-item-message">${test.message}</div>
+                    </div>
+                `;
+                
+                detailsContainer.appendChild(testItem);
+            });
+        }
+        
+        // Sayfa yüklendiğinde
+        document.addEventListener('DOMContentLoaded', function() {
+            // Testleri çalıştır butonu
+            document.getElementById('run-tests-btn').addEventListener('click', function() {
+                // Test konsolunu temizle
+                document.getElementById('test-console').innerHTML = '';
+                
+                // Testleri çalıştır
+                startApplicationTest();
+                
+                // Test sonuçlarını görüntüle (kısa bir gecikme ile)
+                setTimeout(displayTestResults, 1000);
+            });
+            
+            // Uygulamayı görüntüle butonu
+            document.getElementById('view-app-btn').addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+            
+            // Sayfa ilk yüklendiğinde testleri otomatik çalıştır
+            setTimeout(displayTestResults, 1000);
+        });
+    </script>
+</body>
+</html>

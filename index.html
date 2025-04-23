@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi</h1>
+            <p class="subtitle">Profesyonel ve detaylı kişilik analizi ile potansiyel iş ortaklarınızı değerlendirin</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Ana Sayfa</a></li>
+                    <li><a href="karsilastirma.html">Karşılaştırma</a></li>
+                    <li><a href="test.html">Test</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+                <div class="step active">Giriş</div>
+                <div class="step">Çalışkanlık</div>
+                <div class="step">Sadakat</div>
+                <div class="step">Güçlü Yönler</div>
+                <div class="step">Zayıf Yönler</div>
+                <div class="step">Uyumluluk</div>
+                <div class="step">Sonuçlar</div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <!-- Giriş Formu -->
+            <div class="form-step" id="step-1">
+                <h2>Değerlendirme Bilgileri</h2>
+                <div class="form-group">
+                    <label for="evaluated-name">Değerlendirilen Kişinin Adı:</label>
+                    <input type="text" id="evaluated-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="evaluator-name">Değerlendirmeyi Yapan Kişi:</label>
+                    <input type="text" id="evaluator-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="evaluation-date">Değerlendirme Tarihi:</label>
+                    <input type="date" id="evaluation-date" required>
+                </div>
+                <div class="info-box">
+                    <h3><i class="fas fa-info-circle"></i> Değerlendirme Ölçeği</h3>
+                    <p>Her soru için aşağıdaki ölçeği kullanarak 1-5 arası puan veriniz:</p>
+                    <ul>
+                        <li><strong>1:</strong> Kesinlikle katılmıyorum</li>
+                        <li><strong>2:</strong> Katılmıyorum</li>
+                        <li><strong>3:</strong> Kararsızım</li>
+                        <li><strong>4:</strong> Katılıyorum</li>
+                        <li><strong>5:</strong> Kesinlikle katılıyorum</li>
+                    </ul>
+                </div>
+                <div class="button-group">
+                    <button class="btn next-btn" onclick="nextStep()">Başla <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Çalışkanlık Değerlendirmesi -->
+            <div class="form-step" id="step-2">
+                <h2>A. Çalışkanlık Değerlendirmesi</h2>
+                <div class="question-container" id="workethic-questions">
+                    <!-- Sorular JavaScript ile eklenecek -->
+                </div>
+                <div class="button-group">
+                    <button class="btn prev-btn" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Geri</button>
+                    <button class="btn next-btn" onclick="nextStep()">İleri <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Sadakat Değerlendirmesi -->
+            <div class="form-step" id="step-3">
+                <h2>B. Sadakat Değerlendirmesi</h2>
+                <div class="question-container" id="loyalty-questions">
+                    <!-- Sorular JavaScript ile eklenecek -->
+                </div>
+                <div class="button-group">
+                    <button class="btn prev-btn" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Geri</button>
+                    <button class="btn next-btn" onclick="nextStep()">İleri <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Güçlü Yönler Değerlendirmesi -->
+            <div class="form-step" id="step-4">
+                <h2>C. Güçlü Yönler Değerlendirmesi</h2>
+                <div class="question-container" id="strengths-questions">
+                    <!-- Sorular JavaScript ile eklenecek -->
+                </div>
+                <div class="button-group">
+                    <button class="btn prev-btn" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Geri</button>
+                    <button class="btn next-btn" onclick="nextStep()">İleri <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Zayıf Yönler Değerlendirmesi -->
+            <div class="form-step" id="step-5">
+                <h2>D. Zayıf Yönler Değerlendirmesi</h2>
+                <div class="question-container" id="weaknesses-questions">
+                    <!-- Sorular JavaScript ile eklenecek -->
+                </div>
+                <div class="button-group">
+                    <button class="btn prev-btn" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Geri</button>
+                    <button class="btn next-btn" onclick="nextStep()">İleri <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- İş Ortaklığı Uyumluluk Değerlendirmesi -->
+            <div class="form-step" id="step-6">
+                <h2>E. İş Ortaklığı Uyumluluk Değerlendirmesi</h2>
+                <div class="question-container" id="compatibility-questions">
+                    <!-- Sorular JavaScript ile eklenecek -->
+                </div>
+                <div class="form-group">
+                    <label for="additional-notes">Ek Notlar:</label>
+                    <textarea id="additional-notes" rows="4" placeholder="Değerlendirilen kişi hakkında eklemek istediğiniz diğer gözlemler ve notlar..."></textarea>
+                </div>
+                <div class="button-group">
+                    <button class="btn prev-btn" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Geri</button>
+                    <button class="btn next-btn" onclick="calculateResults()">Sonuçları Göster <i class="fas fa-chart-pie"></i></button>
+                </div>
+            </div>
+
+            <!-- Sonuçlar -->
+            <div class="form-step" id="step-7">
+                <h2>Kişilik Analizi Sonuçları</h2>
+                <div class="results-container">
+                    <div class="result-header">
+                        <h3 id="result-name"></h3>
+                        <p id="result-date"></p>
+                        <p id="result-evaluator"></p>
+                    </div>
+                    
+                    <div class="result-summary">
+                        <h3>Genel Değerlendirme</h3>
+                        <p id="overall-summary"></p>
+                    </div>
+                    
+                    <div class="charts-container">
+                        <div class="chart-box">
+                            <h3>Kategori Puanları</h3>
+                            <canvas id="category-chart"></canvas>
+                        </div>
+                        <div class="chart-box">
+                            <h3>Güçlü ve Zayıf Yönler</h3>
+                            <canvas id="strengths-weaknesses-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="detailed-results">
+                        <h3>Detaylı Analiz</h3>
+                        <div class="result-section" id="workethic-result">
+                            <h4>Çalışkanlık Analizi</h4>
+                            <div class="score-box">
+                                <span class="score" id="workethic-score">0</span>/50
+                            </div>
+                            <p id="workethic-analysis"></p>
+                        </div>
+                        
+                        <div class="result-section" id="loyalty-result">
+                            <h4>Sadakat Analizi</h4>
+                            <div class="score-box">
+                                <span class="score" id="loyalty-score">0</span>/50
+                            </div>
+                            <p id="loyalty-analysis"></p>
+                        </div>
+                        
+                        <div class="result-section" id="strengths-result">
+                            <h4>Güçlü Yönler Analizi</h4>
+                            <div class="score-box">
+                                <span class="score" id="strengths-score">0</span>/75
+                            </div>
+                            <p id="strengths-analysis"></p>
+                            <div class="top-traits">
+                                <h5>En Belirgin Güçlü Yönler:</h5>
+                                <ul id="top-strengths"></ul>
+                            </div>
+                        </div>
+                        
+                        <div class="result-section" id="weaknesses-result">
+                            <h4>Zayıf Yönler Analizi</h4>
+                            <div class="score-box">
+                                <span class="score" id="weaknesses-score">0</span>/75
+                            </div>
+                            <p id="weaknesses-analysis"></p>
+                            <div class="top-traits">
+                                <h5>Gelişime Açık Alanlar:</h5>
+                                <ul id="top-weaknesses"></ul>
+                            </div>
+                        </div>
+                        
+                        <div class="result-section" id="compatibility-result">
+                            <h4>İş Ortaklığı Uyumluluk Analizi</h4>
+                            <div class="score-box">
+                                <span class="score" id="compatibility-score">0</span>/50
+                            </div>
+                            <p id="compatibility-analysis"></p>
+                            <div class="compatibility-meter">
+                                <h5>Uyumluluk Derecesi:</h5>
+                                <div class="meter">
+                                    <div class="meter-fill" id="compatibility-meter"></div>
+                                </div>
+                                <div class="meter-labels">
+                                    <span>Düşük</span>
+                                    <span>Orta</span>
+                                    <span>Yüksek</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-section" id="notes-section">
+                            <h4>Ek Notlar</h4>
+                            <p id="additional-notes-display"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendations">
+                        <h3>Profesyonel Tavsiyeler</h3>
+                        <div id="recommendations-content"></div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn prev-btn" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Geri</button>
+                    <button class="btn" onclick="printResults()"><i class="fas fa-print"></i> Yazdır</button>
+                    <button class="btn" onclick="saveAsPDF()"><i class="fas fa-file-pdf"></i> PDF Olarak Kaydet</button>
+                    <button class="btn" onclick="resetForm()"><i class="fas fa-redo"></i> Yeni Değerlendirme</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; <span id="current-year">2025</span> Kişilik Analizi ve İş Ortağı Uyumluluk Değerlendirmesi</p>
+            <p><a href="https://github.com/kullaniciadi/kisilik-analizi" target="_blank">GitHub</a> | <a href="docs/kullanim_kilavuzu.md" target="_blank">Kullanım Kılavuzu</a></p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/personality_analyzer.js"></script>
+    <script>
+        // Otomatik yıl güncellemesi
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
